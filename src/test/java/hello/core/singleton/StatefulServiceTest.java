@@ -19,16 +19,12 @@ class StatefulServiceTest {
         StatefulService statefulService1 = ac.getBean(StatefulService.class);
         StatefulService statefulService2 = ac.getBean(StatefulService.class);
 
-        //사용자A 10000원 주문
-        statefulService1.order("userA", 10000);
-        //사용자B 20000원 주문
-        statefulService2.order("userB", 20000);
+        //지역변수이기 때문에 값이 변할리 없다.
+        int userA_price = statefulService1.order("userA", 10000);
+        int userB_price = statefulService2.order("userB", 20000);
 
-        //사용자A 주문 금액 조회
-        int priceA = statefulService1.getPrice();
+        System.out.println("userA_price = " + userA_price);
 
-        System.out.println("priceA = " + priceA);
-        assertThat(statefulService1.getPrice()).isEqualTo(20000);
     }
 
     static class testConfig {
