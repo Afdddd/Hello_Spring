@@ -6,6 +6,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.security.auth.Destroyable;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class BeanLifeCycleTest {

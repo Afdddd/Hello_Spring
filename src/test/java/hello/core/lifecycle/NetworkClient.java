@@ -1,8 +1,5 @@
 package hello.core.lifecycle;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
@@ -33,7 +30,6 @@ public class NetworkClient {
     public void disconnect(){
         System.out.println("close "+url);
     }
-
 
     @PostConstruct
     public void init() {
