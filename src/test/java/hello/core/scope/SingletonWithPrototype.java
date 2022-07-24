@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,7 +35,7 @@ public class SingletonWithPrototype {
         int ClientCount2 = Client2.logic();
 
         assertThat(ClientCount1).isEqualTo(1);
-        assertThat(ClientCount2).isEqualTo(2);
+        assertThat(ClientCount2).isEqualTo(1);
 
 
 
@@ -64,17 +65,14 @@ public class SingletonWithPrototype {
     }
 
     @Scope("singleton")
-    static class ClientSingleton{
-        private final PrototypeBean PrototypeBean;
-
+    static class ClientSingleton {
         @Autowired
-        public ClientSingleton(PrototypeBean PrototypeBean) {
-            this.PrototypeBean = PrototypeBean;
-        }
+        private Provider<PrototypeBean> prototypeBeanProvider;
 
         public int logic() {
-            PrototypeBean.addCount();
-            int count = PrototypeBean.getCount();
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
+            prototypeBean.addCount();
+            int count = prototypeBean.getCount();
             return count;
         }
 
