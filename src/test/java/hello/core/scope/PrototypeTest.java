@@ -29,10 +29,8 @@ public class PrototypeTest {
 
 
 
-
     @Scope("prototype")
     static class prototypeTestConfig{
-
         @PostConstruct
         public void init() {
             System.out.println("prototypeTestConfig.init");
